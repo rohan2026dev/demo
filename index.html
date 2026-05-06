@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haveli Kitchen</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:#0d0905;color:#f5ede0;overflow-x:hidden}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,9,5,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(210,160,80,0.2)}
+  .logo{font-family:'Playfair Display',serif;font-size:1.6rem;color:#d2a050;letter-spacing:1px}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:#c9b89a;text-decoration:none;font-size:0.9rem;letter-spacing:0.5px;transition:color 0.3s}
+  .nav-links a:hover{color:#d2a050}
+  .nav-cta{background:#d2a050;color:#0d0905;padding:0.5rem 1.4rem;border-radius:50px;font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.3s}
+  .nav-cta:hover{background:#e8b860;color:#0d0905}
+
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(135deg,#0d0905 0%,#1a100a 50%,#0d0905 100%);padding:6rem 2rem 4rem}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(210,160,80,0.08) 0%,transparent 60%)}
+  .hero-badge{display:inline-block;border:1px solid rgba(210,160,80,0.4);color:#d2a050;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:50px;margin-bottom:1.5rem}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.1;font-weight:700;color:#f5ede0;margin-bottom:1.2rem}
+  .hero h1 span{color:#d2a050;font-style:italic}
+  .hero p{font-size:1.1rem;color:#c9b89a;max-width:480px;margin:0 auto 2.5rem;line-height:1.7;font-weight:300}
+  .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{background:#d2a050;color:#0d0905;padding:0.85rem 2rem;border-radius:50px;font-weight:500;text-decoration:none;font-size:0.95rem;transition:all 0.3s}
+  .btn-primary:hover{background:#e8b860;transform:translateY(-2px)}
+  .btn-outline{border:1px solid rgba(210,160,80,0.5);color:#d2a050;padding:0.85rem 2rem;border-radius:50px;font-weight:400;text-decoration:none;font-size:0.95rem;transition:all 0.3s}
+  .btn-outline:hover{border-color:#d2a050;background:rgba(210,160,80,0.08)}
+
+  .features{padding:5rem 2rem;background:#100b07}
+  .section-label{text-align:center;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:#d2a050;margin-bottom:0.8rem}
+  .section-title{text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#f5ede0;margin-bottom:3.5rem}
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:900px;margin:0 auto}
+  .feature-card{background:rgba(255,255,255,0.03);border:1px solid rgba(210,160,80,0.15);border-radius:16px;padding:2rem;text-align:center;transition:all 0.3s}
+  .feature-card:hover{border-color:rgba(210,160,80,0.4);background:rgba(210,160,80,0.05)}
+  .feature-icon{font-size:2rem;margin-bottom:1rem}
+  .feature-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#f5ede0;margin-bottom:0.5rem}
+  .feature-card p{font-size:0.88rem;color:#8a7a6a;line-height:1.6}
+
+  .menu{padding:5rem 2rem;background:#0d0905}
+  .menu-tabs{display:flex;gap:0.5rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
+  .tab{background:transparent;border:1px solid rgba(210,160,80,0.25);color:#8a7a6a;padding:0.5rem 1.3rem;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;transition:all 0.3s}
+  .tab.active,.tab:hover{background:#d2a050;color:#0d0905;border-color:#d2a050}
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:960px;margin:0 auto}
+  .menu-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;transition:all 0.3s}
+  .menu-item:hover{border-color:rgba(210,160,80,0.3);transform:translateY(-3px)}
+  .menu-img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,#2a1a0e,#3d2510);display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .menu-info{padding:1.2rem}
+  .menu-info h4{font-family:'Playfair Display',serif;font-size:1.05rem;color:#f5ede0;margin-bottom:0.3rem}
+  .menu-info p{font-size:0.82rem;color:#8a7a6a;margin-bottom:0.8rem;line-height:1.5}
+  .menu-price{color:#d2a050;font-weight:500;font-size:1rem}
+
+  .testimonial{padding:5rem 2rem;background:linear-gradient(135deg,#100b07,#1a1008)}
+  .testimonial-inner{max-width:700px;margin:0 auto;text-align:center}
+  .stars{color:#d2a050;font-size:1.3rem;margin-bottom:1.5rem;letter-spacing:4px}
+  .testimonial blockquote{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,3vw,1.5rem);color:#f5ede0;line-height:1.6;font-style:italic;margin-bottom:1.5rem}
+  .testimonial cite{color:#8a7a6a;font-size:0.85rem}
+
+  .booking{padding:5rem 2rem;background:#0d0905;text-align:center}
+  .booking-card{background:linear-gradient(135deg,rgba(210,160,80,0.1),rgba(210,160,80,0.05));border:1px solid rgba(210,160,80,0.25);border-radius:24px;max-width:600px;margin:0 auto;padding:3rem 2rem}
+  .booking h2{font-family:'Playfair Display',serif;font-size:2rem;color:#f5ede0;margin-bottom:0.8rem}
+  .booking p{color:#8a7a6a;margin-bottom:2rem;font-size:0.95rem}
+  .booking-form{display:grid;gap:1rem}
+  .booking-form input,.booking-form select{background:rgba(255,255,255,0.05);border:1px solid rgba(210,160,80,0.2);color:#f5ede0;padding:0.8rem 1.2rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.9rem;width:100%;outline:none;transition:border 0.3s}
+  .booking-form input:focus,.booking-form select:focus{border-color:#d2a050}
+  .booking-form select option{background:#1a100a;color:#f5ede0}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .submit-btn{background:#d2a050;color:#0d0905;border:none;padding:1rem;border-radius:10px;font-weight:500;font-size:1rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;margin-top:0.5rem}
+  .submit-btn:hover{background:#e8b860;transform:translateY(-1px)}
+
+  footer{background:#080503;padding:2rem;text-align:center;color:#4a3e34;font-size:0.82rem;border-top:1px solid rgba(210,160,80,0.1)}
+  footer span{color:#d2a050}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Haveli Kitchen</div>
+  <ul class="nav-links">
+    <li><a href="#">Menu</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Table Book Karo</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-badge">Authentic Rajasthani Cuisine</div>
+    <h1>Asli <span>Raajputi</span><br>Swaad</h1>
+    <p>Hamare ghar ka khaana, aapki yaadon mein. Har dish mein chhupi hai ek kahani — masalon ki, mohabbat ki.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Menu Dekhein</a>
+      <a href="#booking" class="btn-outline">Reservation Karein</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <p class="section-label">Kyun Aayein Hamare Paas</p>
+  <h2 class="section-title">Kuch Khaas Baat Hai Humari</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏺</div>
+      <h3>Puraani Recipes</h3>
+      <p>100 saal purani family recipes jo sirf humhare paas hain</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌿</div>
+      <h3>Fresh Ingredients</h3>
+      <p>Roz subah local farmers se taaza sabjiyaan aati hain</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <h3>Tandoor Specials</h3>
+      <p>Asli mitti ke tandoor mein pakaya hua lajawab khana</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎶</div>
+      <h3>Live Folk Music</h3>
+      <p>Har weekend Rajasthani folk sangeet ke saath dining</p>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <p class="section-label">Hamara Menu</p>
+  <h2 class="section-title">Aaj Kya Khayenge?</h2>
+  <div class="menu-tabs">
+    <button class="tab active">Starters</button>
+    <button class="tab">Main Course</button>
+    <button class="tab">Breads</button>
+    <button class="tab">Desserts</button>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-img">🫕</div>
+      <div class="menu-info">
+        <h4>Dal Baati Churma</h4>
+        <p>Rajasthan ki shaan, ghee mein lipti baati aur meethi churma</p>
+        <span class="menu-price">₹280</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img">🍖</div>
+      <div class="menu-info">
+        <h4>Laal Maas</h4>
+        <p>Mathania mirch se bana yeh gosht ka swaad bhoolna mushkil hai</p>
+        <span class="menu-price">₹420</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img">🥘</div>
+      <div class="menu-info">
+        <h4>Gatte Ki Sabzi</h4>
+        <p>Besan ke gatte, dahi ki gravy mein — pure Rajasthani andaaz mein</p>
+        <span class="menu-price">₹220</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="testimonial-inner">
+    <p class="section-label">Customers Ka Kehna</p>
+    <div class="stars">★★★★★</div>
+    <blockquote>"Jaipur mein itna asli Rajasthani khaana kahin nahi mila. Haveli Kitchen ne dil jeet liya. Har baar aate hain aur har baar naya swaad milta hai."</blockquote>
+    <cite>— Priya Sharma, Jaipur</cite>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="booking-card">
+    <h2>Table Reserve Karein</h2>
+    <p>Ek yadgaar dining experience ke liye abhi book karein</p>
+    <div class="booking-form">
+      <input type="text" placeholder="Aapka Naam">
+      <input type="tel" placeholder="Phone Number">
+      <div class="form-row">
+        <input type="date">
+        <input type="time">
+      </div>
+      <select>
+        <option value="">Kitne Log? (Guests)</option>
+        <option>1-2 Log</option>
+        <option>3-4 Log</option>
+        <option>5-8 Log</option>
+        <option>9+ Log (Party)</option>
+      </select>
+      <button class="submit-btn" onclick="alert('Shukriya! Aapki booking confirm ho gayi. Hum jald hi aapko call karenge.')">Table Book Karo ✓</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Haveli Kitchen</span> · Jaipur, Rajasthan · 📞 +91 98765 43210</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
